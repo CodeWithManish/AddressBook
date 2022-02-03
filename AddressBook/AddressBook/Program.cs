@@ -20,7 +20,7 @@ namespace AddressBook
             contacts.LastName=Console.ReadLine();
 
             Console.WriteLine("Enter PhoneNumber: \n");
-            contacts.PhoneNumber = Convert.ToInt32(Console.ReadLine());
+            contacts.PhoneNumber = long.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter Email ID: \n");
             contacts.EmailId=Console.ReadLine();    
@@ -40,6 +40,7 @@ namespace AddressBook
             Console.WriteLine("Create Contact:- \n"+contacts.FirstName+"\n"+contacts.LastName+
                 "\n"+contacts.PhoneNumber+"\n"+contacts.EmailId+"\n"+contacts.Address+"\n"
                 +contacts.City+"\n"+contacts.State+"\n"+contacts.ZipCode);
+            
         }
     }
 }
