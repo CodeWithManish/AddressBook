@@ -12,7 +12,11 @@ namespace AddressBook
         {
             Console.WriteLine("Welcome to Address Book Problem Statement!");
             Contacts contacts = new Contacts();
-
+            
+            AddressBookMain address= new AddressBookMain();
+            address.CreateContact();
+            address.EditContact("Ram");
+            Console.ReadLine();
          
         }
     }
