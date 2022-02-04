@@ -11,11 +11,14 @@ namespace AddressBook
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Problem Statement!");
+
             Contacts contacts = new Contacts();
-            
-            AddressBookMain address= new AddressBookMain();
+
+            AddressBookMain address = new AddressBookMain();
             address.CreateContact();
-            address.EditContact("Ram");
+            //address.EditContact("Ram");
+            
+            address.DeleteContact("Ram");
             Console.ReadLine();
          
         }
