@@ -8,8 +8,6 @@ namespace AddressBook
 {
     public class AddressBookMain
     {
-        List<Contacts> addressBook = new List<Contacts>();
-
         public void CreateContact()
         {
             Contacts contacts = new Contacts();
@@ -39,13 +37,32 @@ namespace AddressBook
 
             display(contacts);
 
-            addressBook.Add(contacts);
+            Program.addressBook.Add(contacts);
         }
-        public void EditContact(string FirstName)
+
+        public void ShowAllContact()
         {
+            foreach (var item in Program.addressBook)
+            {
+              
+                Console.WriteLine("First Name : "+item.FirstName);
+                Console.WriteLine("Last Name : " + item.LastName);
+                Console.WriteLine("Phone Number : " + item.PhoneNumber);
+                Console.WriteLine("Email Id : " + item.EmailId);
+                Console.WriteLine("Address : " + item.Address);
+                Console.WriteLine("City : " + item.City);
+                Console.WriteLine("State : " + item.State);
+                Console.WriteLine("ZipCode : " + item.ZipCode);
+            }
+        }
+
+        public void EditContact()
+        {
+            Console.WriteLine("Please Enter First Name to Edit \n");
+            string FirstName=Console.ReadLine();
             Contacts contacts = new Contacts();
 
-            foreach (var item in addressBook)
+            foreach (var item in Program.addressBook)
             {
                 if (item.FirstName == FirstName)
                 {
@@ -54,7 +71,7 @@ namespace AddressBook
                     break;
                 }
             }
-            addressBook.Remove(contacts);
+            Program.addressBook.Remove(contacts);
 
             Console.WriteLine("1.LastName \n2.PhoneNumber \n3.EmailID \n4.Address \n5.City \n6.State \n7.ZipCode ");
             bool flag = true;
@@ -103,12 +120,14 @@ namespace AddressBook
 
 
         }
-        public void DeleteContact(string FirstName)
+        public void DeleteContact()
         {
+            Console.WriteLine("Please Enter First Name to Delete");
+            string FirstName=Console.ReadLine();
             Contacts contacts = new Contacts();
             int i = 0;
 
-            foreach (var item in addressBook)
+            foreach (var item in Program.addressBook)
             {
 
                 if (item.FirstName == FirstName)
@@ -120,22 +139,20 @@ namespace AddressBook
                 }
                 i++;
             }
-            if (addressBook.Count > i)
+            if (Program.addressBook.Count > i)
             {
-                addressBook[i] = null;
+                Program.addressBook[i] = null;
             }
 
 
-            foreach (var item in addressBook)
+            foreach (var item in Program.addressBook)
             {
                 if (item == null)
                 {
-                    Console.WriteLine("Deleted Successfully");
+                    Console.WriteLine("Deleted Successfully !!!");
                 }
             }
-            
-
-
+          
 
         }
 
