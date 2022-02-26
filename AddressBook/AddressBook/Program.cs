@@ -11,7 +11,7 @@ namespace AddressBook
         public static Dictionary<string,Contacts> addressBook = new Dictionary<string,Contacts>();
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Address Book Problem Statement!");
+            Console.WriteLine("Welcome to Address Book Problem Statement!\n");
 
             Contacts contacts = new Contacts();
 

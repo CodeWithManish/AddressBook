@@ -38,11 +38,31 @@ namespace AddressBook
 
             Console.WriteLine("=======================================\n");
 
-            display(contacts);
+            if (Validate(contacts.FirstName, contacts.LastName))
+            {
+                Console.WriteLine("Contacts Already Exit!\n");
+            }
+            else
+            {
+                display(contacts);
 
-            Program.addressBook.Add(contacts.FirstName, contacts);
+                try
+                {
+                    Program.addressBook.Add(contacts.FirstName, contacts);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-            
+            }
+
+        }
+        //lambda Expression
+        public bool Validate(string firstname, string lastname)
+        {
+         return   Program.addressBook.Values.Any(x => x.FirstName == firstname && x.LastName == lastname);
+           
         }
 
         //print all the Contact in the AddressBook
