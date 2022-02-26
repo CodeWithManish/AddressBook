@@ -8,6 +8,7 @@ namespace AddressBook
 {
     public class AddressBookMain
     {
+        //creating contacts  
         public void CreateContact()
         {
             Contacts contacts = new Contacts();
@@ -35,27 +36,36 @@ namespace AddressBook
             Console.WriteLine("Enter ZipCode:");
             contacts.ZipCode = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine("=======================================\n");
+
             display(contacts);
 
-            Program.addressBook.Add(contacts);
+            Program.addressBook.Add(contacts.FirstName, contacts);
+
+            
         }
 
+        //print all the Contact in the AddressBook
         public void ShowAllContact()
         {
             foreach (var item in Program.addressBook)
             {
-              
-                Console.WriteLine("First Name : "+item.FirstName);
-                Console.WriteLine("Last Name : " + item.LastName);
-                Console.WriteLine("Phone Number : " + item.PhoneNumber);
-                Console.WriteLine("Email Id : " + item.EmailId);
-                Console.WriteLine("Address : " + item.Address);
-                Console.WriteLine("City : " + item.City);
-                Console.WriteLine("State : " + item.State);
-                Console.WriteLine("ZipCode : " + item.ZipCode);
+                if (item.Key != null)
+                {
+                    Console.WriteLine("First Name : " + item.Value.FirstName);
+                    Console.WriteLine("Last Name : " + item.Value.LastName);
+                    Console.WriteLine("Phone Number : " + item.Value.PhoneNumber);
+                    Console.WriteLine("Email Id : " + item.Value.EmailId);
+                    Console.WriteLine("Address : " + item.Value.Address);
+                    Console.WriteLine("City : " + item.Value.City);
+                    Console.WriteLine("State : " + item.Value.State);
+                    Console.WriteLine("ZipCode : " + item.Value.ZipCode);
+                    Console.WriteLine("===================================================\n");
+                }
             }
         }
 
+        //printing Edit Contact
         public void EditContact()
         {
             Console.WriteLine("Please Enter First Name to Edit \n");
@@ -64,14 +74,14 @@ namespace AddressBook
 
             foreach (var item in Program.addressBook)
             {
-                if (item.FirstName == FirstName)
+                if (item.Value.FirstName == FirstName)
                 {
-                    contacts = item;
+                    contacts = item.Value;
                     //return;
                     break;
                 }
             }
-            Program.addressBook.Remove(contacts);
+            Program.addressBook.Remove(contacts.FirstName);
 
             Console.WriteLine("1.LastName \n2.PhoneNumber \n3.EmailID \n4.Address \n5.City \n6.State \n7.ZipCode ");
             bool flag = true;
@@ -120,6 +130,7 @@ namespace AddressBook
 
 
         }
+        //print Delete Contact 
         public void DeleteContact()
         {
             Console.WriteLine("Please Enter First Name to Delete");
@@ -130,7 +141,7 @@ namespace AddressBook
             foreach (var item in Program.addressBook)
             {
 
-                if (item.FirstName == FirstName)
+                if (item.Value.FirstName == FirstName)
                 {
                     //contacts = item;
                     //return;
@@ -141,13 +152,13 @@ namespace AddressBook
             }
             if (Program.addressBook.Count > i)
             {
-                Program.addressBook[i] = null;
+                Program.addressBook.Remove(FirstName);
             }
 
 
             foreach (var item in Program.addressBook)
             {
-                if (item == null)
+                if (item.Value == null)
                 {
                     Console.WriteLine("Deleted Successfully !!!");
                 }
@@ -156,12 +167,14 @@ namespace AddressBook
 
         }
 
-
+        //Display
         public static void display(Contacts contacts)
         {
             Console.WriteLine("Create Contact:- \n" + contacts.FirstName + "\n" + contacts.LastName +
                 "\n" + contacts.PhoneNumber + "\n" + contacts.EmailId + "\n" + contacts.Address + "\n"
                 + contacts.City + "\n" + contacts.State + "\n" + contacts.ZipCode + "\n");
+            
         }
+        
     }
 }

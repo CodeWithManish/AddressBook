@@ -8,7 +8,7 @@ namespace AddressBook
 {
     public class Program
     {
-        public static List<Contacts> addressBook = new List<Contacts>();
+        public static Dictionary<string,Contacts> addressBook = new Dictionary<string,Contacts>();
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Problem Statement!");
