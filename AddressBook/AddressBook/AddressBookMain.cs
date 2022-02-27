@@ -64,6 +64,18 @@ namespace AddressBook
          return   Program.addressBook.Values.Any(x => x.FirstName == firstname && x.LastName == lastname);
            
         }
+       
+        public void CityOrState()
+        {
+            Console.WriteLine("Please, Enter City or State .");    
+            string State = Console.ReadLine();
+            List<Contacts> contacts = Program.addressBook.Values.ToList().FindAll(e => (e.State == State) || (e.City == State)).ToList();
+            foreach (Contacts person in contacts)
+            {
+                Console.WriteLine("FirstName : "+ person.FirstName + "\tLastName: " + person.LastName + "\tPhoneNo: " + person.PhoneNumber + "\tEmailId: " + person.EmailId + "\tZipCode: " + person.ZipCode);
+            }
+           
+        }
 
         //print all the Contact in the AddressBook
         public void ShowAllContact()

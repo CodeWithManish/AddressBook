@@ -19,7 +19,7 @@ namespace AddressBook
             int a = 0;
             do
             {
-                Console.WriteLine("Please, select valid number from below for the action: \n1. Add \n2. Delete \n3. EditContact \n4. Show All Contact\nOtherwise press any key to terminate ");
+                Console.WriteLine("Please, select valid number from below for the action: \n1. Add \n2. Delete \n3. EditContact \n4. Show All Contact \n5. Search User\nOtherwise press any key to terminate ");
                 a = Convert.ToInt32(Console.ReadLine());
                 switch (a)
                 {
@@ -34,6 +34,9 @@ namespace AddressBook
                         break;
                     case 4: 
                         address.ShowAllContact();
+                        break;
+                    case 5:
+                        address.CityOrState();
                         break;
                 }
             }
