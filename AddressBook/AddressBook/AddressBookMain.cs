@@ -109,6 +109,17 @@ namespace AddressBook
             Console.WriteLine("The number of record is :- "+contacts.Count);
         }
 
+        public void SortContactByName()
+        {
+            /*List<Contacts> contacts = Program.addressBook.Values.OrderBy(x => x.FirstName).ToList();
+            contacts.Sort();*/
+
+            foreach (var person in Program.addressBook.Values.OrderBy(x => x.FirstName))
+            {
+                Console.WriteLine(person.ToString());
+            }
+        }
+
 
         //print all the Contact in the AddressBook
         public void ShowAllContact()
