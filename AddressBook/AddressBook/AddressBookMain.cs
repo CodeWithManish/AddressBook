@@ -59,25 +59,25 @@ namespace AddressBook
 
         }
 
-       
+
 
         //lambda Expression
         public bool Validate(string firstname, string lastname)
         {
-         return   Program.addressBook.Values.Any(x => x.FirstName == firstname && x.LastName == lastname);
-           
+            return Program.addressBook.Values.Any(x => x.FirstName == firstname && x.LastName == lastname);
+
         }
-       
+
         public void CityOrState()
         {
-            Console.WriteLine("Please, Enter City or State .");    
+            Console.WriteLine("Please, Enter City or State .");
             string State = Console.ReadLine();
             List<Contacts> contacts = Program.addressBook.Values.ToList().FindAll(e => (e.State == State) || (e.City == State)).ToList();
             foreach (Contacts person in contacts)
             {
-                Console.WriteLine("FirstName : "+ person.FirstName + "\tLastName: " + person.LastName + "\tPhoneNo: " + person.PhoneNumber + "\tEmailId: " + person.EmailId + "\tZipCode: " + person.ZipCode);
+                Console.WriteLine("FirstName : " + person.FirstName + "\tLastName: " + person.LastName + "\tPhoneNo: " + person.PhoneNumber + "\tEmailId: " + person.EmailId + "\tZipCode: " + person.ZipCode);
             }
-           
+
         }
 
         //ViewPersonCityOrState
@@ -86,7 +86,7 @@ namespace AddressBook
             Console.WriteLine("Enter FirstName");
             string firstname = Console.ReadLine();
 
-            Contacts str=Program.addressBook.Values.ToList().Find(x => x.FirstName == firstname);
+            Contacts str = Program.addressBook.Values.ToList().Find(x => x.FirstName == firstname);
             if (str != null)
             {
                 Console.WriteLine("Person Detail is found");
@@ -106,20 +106,65 @@ namespace AddressBook
             Console.WriteLine("Enter State");
             string state = Console.ReadLine();
             List<Contacts> contacts = Program.addressBook.Values.ToList().FindAll(e => (e.State == state) && (e.City == city));
-            Console.WriteLine("The number of record is :- "+contacts.Count);
+            Console.WriteLine("The number of record is :- " + contacts.Count);
         }
 
-        public void SortContactByName()
+        
+        public void SortByCityStateOrZipCode()
         {
-            /*List<Contacts> contacts = Program.addressBook.Values.OrderBy(x => x.FirstName).ToList();
-            contacts.Sort();*/
-
-            foreach (var person in Program.addressBook.Values.OrderBy(x => x.FirstName))
+            bool flag = true;
+            while (flag)
             {
-                Console.WriteLine(person.ToString());
-            }
-        }
 
+                Console.WriteLine("\nChoose an option:\n 1.FirstName\n 2. City\n 3. State\n 4. ZipCode\n 5. Exit");
+                int check = Convert.ToInt32(Console.ReadLine());
+                switch (check)
+                {
+                    case 1:
+                        foreach (var person in Program.addressBook.Values.OrderBy(x => x.FirstName))
+                        {
+                            Console.WriteLine(person.ToString());
+                        }
+                        break;
+
+                    case 2:
+                        foreach (var person in Program.addressBook.Values.OrderBy(x => x.City))
+                        {
+                            Console.WriteLine(person.ToString());
+                        }
+                        break;
+
+                    case 3:
+                        foreach (var person in Program.addressBook.Values.OrderBy(x => x.State))
+                        {
+                            Console.WriteLine(person.ToString());
+                        }
+                        break;
+
+                    case 4:
+                        foreach (var person in Program.addressBook.Values.OrderBy(x => x.State))
+                        {
+                            Console.WriteLine(person.ToString());
+                        }
+                        break;
+
+                    case 5:
+                        flag = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid Entry");
+                        break;
+                }
+            }
+
+            if (Program.addressBook.Count <= 0)
+            {
+                Console.WriteLine("Your Records is empty");
+                return;
+            }
+
+        }
 
         //print all the Contact in the AddressBook
         public void ShowAllContact()
@@ -145,7 +190,7 @@ namespace AddressBook
         public void EditContact()
         {
             Console.WriteLine("Please Enter First Name to Edit \n");
-            string FirstName=Console.ReadLine();
+            string FirstName = Console.ReadLine();
             Contacts contacts = new Contacts();
 
             foreach (var item in Program.addressBook)
@@ -210,7 +255,7 @@ namespace AddressBook
         public void DeleteContact()
         {
             Console.WriteLine("Please Enter First Name to Delete");
-            string FirstName=Console.ReadLine();
+            string FirstName = Console.ReadLine();
             Contacts contacts = new Contacts();
             int i = 0;
 
@@ -239,7 +284,7 @@ namespace AddressBook
                     Console.WriteLine("Deleted Successfully !!!");
                 }
             }
-          
+
 
         }
 
@@ -249,8 +294,8 @@ namespace AddressBook
             Console.WriteLine("Create Contact:- \n" + contacts.FirstName + "\n" + contacts.LastName +
                 "\n" + contacts.PhoneNumber + "\n" + contacts.EmailId + "\n" + contacts.Address + "\n"
                 + contacts.City + "\n" + contacts.State + "\n" + contacts.ZipCode + "\n");
-            
+
         }
-        
+
     }
 }
