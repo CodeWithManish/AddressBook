@@ -58,6 +58,9 @@ namespace AddressBook
             }
 
         }
+
+       
+
         //lambda Expression
         public bool Validate(string firstname, string lastname)
         {
@@ -75,6 +78,24 @@ namespace AddressBook
                 Console.WriteLine("FirstName : "+ person.FirstName + "\tLastName: " + person.LastName + "\tPhoneNo: " + person.PhoneNumber + "\tEmailId: " + person.EmailId + "\tZipCode: " + person.ZipCode);
             }
            
+        }
+
+        //ViewPersonCityOrState
+        public void ViewPersonInTheCityOrState()
+        {
+            Console.WriteLine("Enter FirstName");
+            string firstname = Console.ReadLine();
+
+            Contacts str=Program.addressBook.Values.ToList().Find(x => x.FirstName == firstname);
+            if (str != null)
+            {
+                Console.WriteLine("Person Detail is found");
+            }
+            else
+            {
+                Console.WriteLine("Person is not found");
+            }
+
         }
 
         //print all the Contact in the AddressBook
