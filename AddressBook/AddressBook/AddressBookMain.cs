@@ -98,6 +98,18 @@ namespace AddressBook
 
         }
 
+
+        public void CountOfContactPersons()
+        {
+            Console.WriteLine("Enter City");
+            string city = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            string state = Console.ReadLine();
+            List<Contacts> contacts = Program.addressBook.Values.ToList().FindAll(e => (e.State == state) && (e.City == city));
+            Console.WriteLine("The number of record is :- "+contacts.Count);
+        }
+
+
         //print all the Contact in the AddressBook
         public void ShowAllContact()
         {
