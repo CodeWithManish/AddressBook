@@ -19,7 +19,7 @@ namespace AddressBook
             int a = 0;
             do
             {
-                Console.WriteLine("Please, select valid number from below for the action: \n1. Add \n2. Delete \n3. EditContact \n4. Show All Contact \n5. Search User \n6. View Person By City Or State \n7. Count Of ContactPersons By City and State \n8. Sort the Entries by CityState Or Zipcode  \n9. Write file text \n10. Read file Text \nOtherwise press any key to terminate ");
+                Console.WriteLine("Please, select valid number from below for the action: \n1. Add \n2. Delete \n3. EditContact \n4. Show All Contact \n5. Search User \n6. View Person By City Or State \n7. Count Of ContactPersons By City and State \n8. Sort the Entries by CityState Or Zipcode  \n9. Write file text \n10. Read file Text \n11. Write CSV file.\n12. Read CSV File\nOtherwise press any key to terminate ");
                 a = Convert.ToInt32(Console.ReadLine());
                 switch (a)
                 {
@@ -52,6 +52,12 @@ namespace AddressBook
                         break;
                     case 10:
                         address.ReadStreamReader();
+                        break;
+                    case 11:
+                        address.WriteCsvFile();
+                        break;
+                    case 12:
+                        address.ReadCsvFile();
                         break;
                 }
             }

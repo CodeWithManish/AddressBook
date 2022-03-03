@@ -1,5 +1,8 @@
-﻿using System;
+﻿using CsvHelper;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -110,7 +113,7 @@ namespace AddressBook
             Console.WriteLine("The number of record is :- " + contacts.Count);
         }
 
-        
+
         public void SortByCityStateOrZipCode()
         {
             bool flag = true;
@@ -298,12 +301,13 @@ namespace AddressBook
 
         }
 
+        //FileIO
         public void WriteUsingStreamWriter()
-        { 
+        {
             String path = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\TextFileIO.txt";
             using (StreamWriter sr = File.AppendText(path))
             {
-               // sr.WriteLine(Program.addressBook.Values);
+                // sr.WriteLine(Program.addressBook.Values);
                 foreach (var person in Program.addressBook.Values)
                 {
                     sr.WriteLine(person.ToString());
@@ -329,6 +333,34 @@ namespace AddressBook
                 sr.Close();
             }
         }
+
+        //csv Operation
+
+        public void WriteCsvFile()
+        {
+            string filePath = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\Utility\Address.csv";
+            StreamWriter writer = new StreamWriter(filePath);
+            CsvWriter cw = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            cw.WriteRecords<Contacts>(Program.addressBook.Values);
+            Console.WriteLine("Write person contact as CSV file is Successfully created!");
+            writer.Flush();
+            writer.Close();
+
+        }
+        public void ReadCsvFile()
+        {
+            string filePath = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\Utility\Address.csv";
+            StreamReader reader = new StreamReader(filePath);
+            CsvReader csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+            List<Contacts> readResult = csvReader.GetRecords<Contacts>().ToList();
+            Console.WriteLine("Reading from CSV file");
+            foreach (var item in readResult)
+            {
+                Console.WriteLine(item.ToString());
+            }
+            reader.Close();
+        }
+
 
     }
 }
