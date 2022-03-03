@@ -361,6 +361,29 @@ namespace AddressBook
             reader.Close();
         }
 
+        //Json File
+        public void WriteJsonFile()
+        {
+            string jsonPath = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\AddressBook.json";
+            foreach (var item in Program.addressBook.Values)
+            {
+                string jsonData = JsonConvert.SerializeObject(item);
+                File.WriteAllText(jsonPath, jsonData);
+            }
+            Console.WriteLine("Write the AddressBook with personContact as Json file is Successfully");
+        }
 
-    }
+        public void ReadJsonFile()
+        {
+            string jsonPath = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\AddressBook.json";
+            string jsonData = File.ReadAllText(jsonPath);
+            var jsonResult = JsonConvert.DeserializeObject<List<Contacts>>(jsonData);
+            Console.WriteLine("Reading from Json file");
+            foreach (var item in jsonResult)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+    } 
 }
