@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -295,6 +296,38 @@ namespace AddressBook
                 "\n" + contacts.PhoneNumber + "\n" + contacts.EmailId + "\n" + contacts.Address + "\n"
                 + contacts.City + "\n" + contacts.State + "\n" + contacts.ZipCode + "\n");
 
+        }
+
+        public void WriteUsingStreamWriter()
+        { 
+            String path = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\TextFileIO.txt";
+            using (StreamWriter sr = File.AppendText(path))
+            {
+               // sr.WriteLine(Program.addressBook.Values);
+                foreach (var person in Program.addressBook.Values)
+                {
+                    sr.WriteLine(person.ToString());
+                }
+
+                sr.Close();
+                Console.WriteLine(File.ReadAllText(path));
+
+            }
+        }
+
+        public void ReadStreamReader()
+        {
+            string path = @"C:\Users\kmani\Downloads\DNetFolder\AddressBook\AddressBook\AddressBook\TextFileIO.txt";
+            if (File.Exists(path))
+            {
+                StreamReader sr = File.OpenText(path);
+                string s = "";
+                while ((s = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(s);
+                }
+                sr.Close();
+            }
         }
 
     }
